@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+service UserService {
+    rpc ping(statusRequest) returns(statusResponse){};
+    rpc getUser(UserIdRequest) returns(UserResponse){};
+    rpc getUsers(statusRequest) returns(UsersResponse){};
+    rpc createUser(UserRequest) returns(UserResponse){};
+    rpc updateUser(UserUpdateRequest) returns(UserResponse){};
+    rpc deleteUser(UserIdRequest) returns(UserResponse){};
+}
+
+
+message statusRequest {}
+
+message statusResponse {
+    string message = 1;
+}
+
+message UserRequest {
+    optional string id = 1;
+    required string name = 2;
+    required string email = 3;
+    required string password = 4;
+}
+
+message UserUpdateRequest {
+    required string id = 1;
+    optional string name =2 ;
+    optional string email = 3;
+    optional string password = 4;
+}
+
+message Error {
+    optional string message = 1;
+    required string code = 2;
+}
+
+message UserResponse {
+    optional Error error = 1;
+    required UserRequest data = 2;
+}
+
+message UsersResponse{
+    optional Error error = 1;
+    repeated UserRequest data = 2;
+}
+
+message UserIdRequest {
+    required string id = 1;
+}
