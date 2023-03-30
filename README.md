@@ -1,1 +1,1 @@
-# Elasticsearch-gRPC-example
+# Implementation of Elasticsearch, gRPC and Node.js 
